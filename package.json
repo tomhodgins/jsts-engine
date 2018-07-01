@@ -11,6 +11,7 @@
     "url": "git+https://github.com/tomhodgins/jsts-engine.git"
   },
   "keywords": [
+    "JSTS",
     "js",
     "javascript",
     "template",
