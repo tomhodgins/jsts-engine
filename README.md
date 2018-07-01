@@ -24,7 +24,7 @@ npm install jsts-engine
 
 The two options for CDN-hosted usage include linking the ES module:
 
-```
+```html
 <script type=module>
   import jstsEngine from 'https://tomhodgins.github.io/jsts-engine/index.es.js'
 
@@ -34,7 +34,7 @@ The two options for CDN-hosted usage include linking the ES module:
 
 Or alternatively linking the browser version:
 
-```
+```html
 <script src=https://tomhodgins.github.io/jsts-engine/index.browser.js></script>
 <script>
   // your code here…
@@ -51,7 +51,7 @@ This means you can use JavaScript, JavaScript's logic, and even functions to hel
 
 To write a JSTS file you need any text that can optionally include `${}`, and any valid JavaScript inside those brackets. Here's a simple example:
 
-```
+```js
 This is a JSTS file. 1 + 2 + 3 + 4 = ${1 + 2 + 3 + 4}.
 ```
 
@@ -59,7 +59,7 @@ This is a JSTS file. 1 + 2 + 3 + 4 = ${1 + 2 + 3 + 4}.
 
 Next, in order to turn our file (a string) into what we want, we must first read the string as a JavaScript template string, interpolate the JavaScript in `${}` brackets, and then return the result. This is what the jsts-engine function does.
 
-```
+```js
 jstsEngine(string, environment)
 ```
 
@@ -76,19 +76,19 @@ At the end of interpolation, the JSTS engine will return an array that contains 
 
 Suppose we have the JSTS engine loaded with the name `jstsEngine` for the following examples:
 
-```
+```js
 jstsEngine('1 + 2 + 3 + 4 = ${1 + 2 + 3 + 4}')
 ```
 
 When we run this, we get back an array like this containing the interpolated string, and the result of the output object:
 
-```
+```js
 ['1 + 2 + 3 + 4 = 10', {}]
 ```
 
 Now suppose we have a string like this: `Double 5 is: ${double(5)}`. When we interpolate that, unless we explicitly give the JSTS engine a `double()` function in the environment object it won't know what do to:
 
-```
+```js
 jstsEngine(
   'Double 5 is: ${double(5)}',
   {double: num => num * 2}
@@ -97,7 +97,7 @@ jstsEngine(
 
 And we get back this result:
 
-```
+```js
 ['Double 5 is: 10', {}]
 ```
 
@@ -105,7 +105,7 @@ And we get back this result:
 
 The output object is an optional space where values can be written and accessed during interpolation, as well as surviving to be returned with the interpolated string. This allows you to be as flexible with the output of your file as you can be with the input. Consider the following examples:
 
-```
+```js
 jstsEngine(
   '${output.word = "Hello"} world. ${output.word} everybody!'
 )
@@ -113,7 +113,7 @@ jstsEngine(
 
 In this example, we write the string `"Hello"` to `output.word`. Not only does this allow us to re-use this value later in our template by referring to `${output.word}` a second time, but we also end up with `{word: "Hello"}` as our output object, allowing us to work with the data further even after the interpolation is complete.
 
-```
+```js
 ["Hello world. Hello everybody!", {word: "Hello"}]
 ```
 
