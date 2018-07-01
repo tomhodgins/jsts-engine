@@ -1,11 +1,9 @@
 export default function(string = '', environment = {}) {
 
   return new Function(
-
-    [...Object.keys(environment), 'output={}'],
-
+    ...Object.keys(environment),
+    'output={}',
     'return [`' + string + '`, output]'
-
-  ).apply(null, Object.values(environment))
+  )(...Object.values(environment))
 
 }
