@@ -1,6 +1,6 @@
 {
   "name": "jsts-engine",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "JavaScript Template Strings as Files",
   "main": "index.js",
   "module": "index.es.js",
