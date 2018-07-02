@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "JavaScript Template Strings as Files",
   "main": "index.js",
+  "module": "index.es.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
